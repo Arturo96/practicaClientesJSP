@@ -1,0 +1,53 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.clientes {
+    padding-top: 1rem;
+}
+
+th {
+    text-align: center;
+}
+
+td {
+    vertical-align: initial !important;
+    text-align: center;
+}
+
+td:nth-child(2) {
+    text-align: left;
+}
+
+.table-hover tbody tr:hover {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.tuerca {
+    animation: girar 3s linear infinite;
+
+}
+
+footer {
+    margin-top: auto;
+    background-color: #600047;
+    color: #fff;
+}
+
+footer h2 {
+    padding: 2em;
+}
+
+.font-light {
+    font-weight: lighter !important;
+}
+
+@keyframes girar {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+

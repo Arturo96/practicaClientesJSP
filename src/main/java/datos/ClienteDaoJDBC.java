@@ -13,6 +13,58 @@ public class ClienteDaoJDBC {
     private static final String SQL_UPDATE = "UPDATE clientes SET "
             + "nombres=?, apellidos=?, telefono=?, saldo=? WHERE id=?";
     private static final String SQL_DELETE = "DELETE FROM clientes WHERE id=?";
+    private static final String SQL_SALDO_TOTAL = "SELECT SUM(saldo) FROM clientes";
+    private static final String SQL_NUM_CLIENTES = "SELECT COUNT(id) FROM clientes";
+    
+    public double getSaldoTotal() {
+
+        Connection conn = null;
+        PreparedStatement st = null;
+        ResultSet result = null;
+        double saldo = -300.0;
+
+        try {
+            conn = Conexion.getConnection();
+            st = conn.prepareStatement(SQL_SALDO_TOTAL);
+            result = st.executeQuery();
+            result.absolute(1);
+            saldo = result.getDouble(1);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(result);
+            Conexion.close(st);
+            Conexion.close(conn);
+        }
+
+        return saldo;
+    }
+    
+    public int getNumClientes() {
+
+        Connection conn = null;
+        PreparedStatement st = null;
+        ResultSet result = null;
+        int numClientes = -1;
+
+        try {
+            conn = Conexion.getConnection();
+            st = conn.prepareStatement(SQL_NUM_CLIENTES);
+            result = st.executeQuery();
+            result.absolute(1);
+            numClientes = result.getInt(1);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(result);
+            Conexion.close(st);
+            Conexion.close(conn);
+        }
+
+        return numClientes;
+    }
 
     public List<Cliente> getClientes() {
 

@@ -15,11 +15,14 @@ public class ServletControlador extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        List<Cliente> clientes = new ClienteDaoJDBC().getClientes();
+        ClienteDaoJDBC clientedao = new ClienteDaoJDBC();
         
-        System.out.println("clientes = " + clientes);
+        List<Cliente> clientes = clientedao.getClientes();
         
         request.setAttribute("clientes", clientes);
+        request.setAttribute("saldoTotal", clientedao.getSaldoTotal());
+        request.setAttribute("numClientes", clientedao.getNumClientes());
+        
         request.getRequestDispatcher("vista/listarClientes.jsp").forward(request, response);
     }
 }
