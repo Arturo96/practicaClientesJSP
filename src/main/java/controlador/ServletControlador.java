@@ -23,6 +23,14 @@ public class ServletControlador extends HttpServlet{
         request.setAttribute("saldoTotal", clientedao.getSaldoTotal());
         request.setAttribute("numClientes", clientedao.getNumClientes());
         
-        request.getRequestDispatcher("vista/listarClientes.jsp").forward(request, response);
+        request.getRequestDispatcher("vista/clientes.jsp").forward(request, response);
+    }
+    
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+        ClienteDaoJDBC clientedao = new ClienteDaoJDBC();
+        
+        
     }
 }

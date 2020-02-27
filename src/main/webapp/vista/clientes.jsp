@@ -19,7 +19,7 @@
         <jsp:include page="../WEB-INF/components/navegacion.jsp" />
 
         <!-- Listado de clientes -->
-        <jsp:include page="../WEB-INF/clientes/clientes.jsp" />
+        <jsp:include page="../WEB-INF/clientes/listarClientes.jsp" />
 
         <!-- Footer -->
         <jsp:include page="../WEB-INF/components/footer.jsp" />
