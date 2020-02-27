@@ -2,7 +2,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-
+    
 }
 
 .clientes {
@@ -16,10 +16,10 @@ th {
 td {
     vertical-align: initial !important;
     text-align: center;
-}
-
-td:nth-child(2) {
-    text-align: left;
+    
+    &:nth-child(2) {
+        text-align: left;
+    }
 }
 
 .table-hover tbody tr:hover {
@@ -36,10 +36,10 @@ footer {
     margin-top: auto;
     background-color: #600047;
     color: #fff;
-}
-
-footer h2 {
-    padding: 2em;
+    
+    h2 {
+        padding: 2em;
+    }
 }
 
 .font-light {
