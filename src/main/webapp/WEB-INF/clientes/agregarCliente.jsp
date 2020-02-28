@@ -1,3 +1,5 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+
 <div class="modal fade" id="agregarClienteModal">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -9,8 +11,7 @@
             </div>
 
 
-            <form action="${pageContext.request.contextPath}/ServletControlador?
-                  accion=insertar"
+            <form action="${pageContext.request.contextPath}/ServletControlador?accion=insertar"
                   method="POST" class="was-validated">
 
                 <div class="modal-body">
@@ -43,6 +44,8 @@
                 </div>
                 
                 <div class="modal-footer">
+                    
+                    
                     <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
 
