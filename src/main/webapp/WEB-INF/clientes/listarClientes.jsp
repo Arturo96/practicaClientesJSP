@@ -12,7 +12,7 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th>Id</th>
+                            <th>N°</th>
                             <th>Nombre completo</th>
                             <th>Email</th>
                             <th>Teléfono</th>
@@ -21,9 +21,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach var="cliente" items="${clientes}">
+                        <c:forEach var="cliente" items="${clientes}" varStatus="status">
                             <tr>
-                                <td>${cliente.id}</td>
+                                <td>${status.count}</td>
                                 <td>${cliente.nombres} ${cliente.apellidos}</td>
                                 <td>${cliente.email}</td>
                                 <td>${cliente.telefono}</td>

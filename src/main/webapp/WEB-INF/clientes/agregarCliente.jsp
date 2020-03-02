@@ -18,35 +18,37 @@
 
                     <div class="form-group">
                         <label for="nombres">Nombres:</label>
-                        <input type="text" class="form-control" name="nombres" required="">
+                        <input type="text" class="form-control" name="nombres" id="nombres" >
                     </div>
 
                     <div class="form-group">
                         <label for="apellidos">Apellidos:</label>
-                        <input type="text" class="form-control" name="apellidos" required="">
+                        <input type="text" class="form-control" name="apellidos" id="apellidos" >
                     </div>
 
                     <div class="form-group">
                         <label for="email">Email:</label>
-                        <input type="email" class="form-control" name="email" required="">
+                        <input type="email" class="form-control" name="email" id="email" >
                     </div>
 
                     <div class="form-group">
                         <label for="telefono">Teléfono:</label>
-                        <input type="tel" class="form-control" name="telefono" required="">
+                        <input type="tel" class="form-control" name="telefono" id="telefono" >
                     </div>
 
                     <div class="form-group">
                         <label for="saldo">Saldo:</label>
-                        <input type="number" class="form-control" name="saldo" required="">
+                        <input type="number" class="form-control" name="saldo" id="saldo" >
                     </div>
+                    
+                    <div id="errores" class="errores text-center"></div>
                     
                 </div>
                 
                 <div class="modal-footer">
                     
                     
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button id="enviarCliente" type="submit" class="btn btn-primary">Guardar</button>
                 </div>
 
             </form>

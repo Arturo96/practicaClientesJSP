@@ -2,7 +2,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    
+    background: red !important;
 }
 
 .clientes {
@@ -34,7 +34,7 @@ td {
 
 footer {
     margin-top: auto;
-    background-color: #600047;
+    background-color: #600047 !important;
     color: #fff;
     
     h2 {
