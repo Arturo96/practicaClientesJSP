@@ -2,8 +2,6 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="es_CO" />
 
-
-
 <div class="container">
     <div class="clientes row">
         <div class="col-md-9">
@@ -31,7 +29,8 @@
                                 <td>${cliente.telefono}</td>
                                 <td><fmt:formatNumber value="${cliente.saldo}" type="currency" /></td>
                                 <td>
-                                    <a href="${pageContext.request.contextPath}/ServletClientes" class="btn btn-info">Editar</a>
+                                    <a href="${pageContext.request.contextPath}/ServletControlador?accion=editar&id=${cliente.id}"
+                                       class="btn btn-info">Editar</a>
                                     <!--  <a href="#" class="btn btn-danger">Eliminar</a> -->
                                 </td>
                             </tr>

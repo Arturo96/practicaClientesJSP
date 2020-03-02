@@ -29,6 +29,18 @@ public class ServletControlador extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        String accion = request.getParameter("accion");
+
+        if (accion != null) {
+            switch (accion) {
+                case "editar":
+                    this.editarCliente(request, response);
+                default:
+                    
+            }
+        } 
+        
         accionDefault(request, response);
 
     }
@@ -46,14 +58,12 @@ public class ServletControlador extends HttpServlet {
                 default:
                     
             }
-        } else {
-            
-        }
+        } 
         
         accionDefault(request, response);
 
     }
-
+    
     private void insertarCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String nombres = request.getParameter("nombres");
@@ -79,6 +89,33 @@ public class ServletControlador extends HttpServlet {
             
         }
 
+    }
+
+    private void editarCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = -1;
+        String idString = request.getParameter("id");
+        if(esIdValido(idString)) id = Integer.parseInt(idString);
+        
+        ClienteDaoJDBC clientedao = new ClienteDaoJDBC();
+        Cliente cliente = clientedao.getClienteById(id);
+        
+        if (cliente != null) {
+            request.setAttribute("cliente", cliente);
+        }
+        
+        String path = "/WEB-INF/clientes/editarCliente.jsp";
+        
+        request.getRequestDispatcher(path).forward(request, response);
+        
+    }
+    
+    private boolean esIdValido(String idString) {
+        try {
+            int id = Integer.parseInt(idString);
+            return true;
+        } catch (NumberFormatException ex) {
+            return false;
+        }
     }
 
     private List<String> validarCampos(String nombres, String apellidos,
