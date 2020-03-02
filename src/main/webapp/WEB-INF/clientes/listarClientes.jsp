@@ -2,6 +2,8 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="es_CO" />
 
+
+
 <div class="container">
     <div class="clientes row">
         <div class="col-md-9">

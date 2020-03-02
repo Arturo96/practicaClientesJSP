@@ -2,7 +2,6 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  
 }
 
 .clientes {
@@ -41,6 +40,11 @@ footer h2 {
 
 .font-light {
   font-weight: lighter !important;
+}
+
+.errores h3 {
+  font-weight: bold !important;
+  color: #f00 !important;
 }
 
 @keyframes girar {

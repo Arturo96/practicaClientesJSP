@@ -11,7 +11,7 @@
             </div>
 
 
-            <form action="${pageContext.request.contextPath}/ServletControlador?accion=insertar"
+            <form id="frmCliente" action="${pageContext.request.contextPath}/ServletControlador?accion=insertar"
                   method="POST" class="was-validated">
 
                 <div class="modal-body">

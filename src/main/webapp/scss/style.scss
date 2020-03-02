@@ -2,7 +2,6 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background: red !important;
 }
 
 .clientes {
@@ -16,7 +15,7 @@ th {
 td {
     vertical-align: initial !important;
     text-align: center;
-    
+
     &:nth-child(2) {
         text-align: left;
     }
@@ -36,7 +35,7 @@ footer {
     margin-top: auto;
     background-color: #600047 !important;
     color: #fff;
-    
+
     h2 {
         padding: 2em;
     }
@@ -46,6 +45,14 @@ footer {
     font-weight: lighter !important;
 }
 
+.errores {
+    
+    h3 {
+        font-weight: bold !important;
+        color: #f00 !important;
+    }
+
+}
 @keyframes girar {
     from {transform: rotate(0deg);}
     to {transform: rotate(360deg);}
