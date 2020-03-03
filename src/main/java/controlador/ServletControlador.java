@@ -38,6 +38,7 @@ public class ServletControlador extends HttpServlet {
                     this.editarCliente(request, response);
                     break;
                 default:
+                    break;
 
             }
         }
@@ -60,7 +61,11 @@ public class ServletControlador extends HttpServlet {
                 case "actualizar":
                     this.actualizarCliente(request, response);
                     break;
+                case "borrar":
+                    this.borrarCliente(request, response);
+                    break;
                 default:
+                    break;
 
             }
         }
@@ -117,7 +122,7 @@ public class ServletControlador extends HttpServlet {
 
             if (errores.isEmpty()) {
                 double saldo = Double.parseDouble(saldoString);
-                
+
                 String mensajeUpdate = clientedao.update(new Cliente(id, nombres, apellidos, email, telefono, saldo));
                 System.out.println("mensajeUpdate = " + mensajeUpdate);
 
@@ -147,6 +152,26 @@ public class ServletControlador extends HttpServlet {
         String path = "/WEB-INF/clientes/editarCliente.jsp";
 
         request.getRequestDispatcher(path).forward(request, response);
+
+    }
+
+    private void borrarCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        int id = -1;
+        String idString = request.getParameter("id");
+        if (esIdValido(idString)) {
+            id = Integer.parseInt(idString);
+        }
+
+        ClienteDaoJDBC clientedao = new ClienteDaoJDBC();
+        Cliente cliente = clientedao.getClienteById(id);
+
+        if (cliente != null) {
+
+            String mensajeDelete = clientedao.delete(id);
+            System.out.println("mensajeDelete = " + mensajeDelete);
+
+        }
 
     }
 

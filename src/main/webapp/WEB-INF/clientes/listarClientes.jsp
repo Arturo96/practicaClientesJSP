@@ -14,8 +14,9 @@
                         <tr>
                             <th>N°</th>
                             <th>Nombre completo</th>
+                            <!--
                             <th>Email</th>
-                            <th>Teléfono</th>
+                            <th>Teléfono</th>-->
                             <th>Saldo</th>
                             <th>Acción</th>
                         </tr>
@@ -25,13 +26,13 @@
                             <tr>
                                 <td>${status.count}</td>
                                 <td>${cliente.nombres} ${cliente.apellidos}</td>
-                                <td>${cliente.email}</td>
-                                <td>${cliente.telefono}</td>
+                                <!-- <td>{cliente.email}</td>
+                                <td>{cliente.telefono}</td> -->
                                 <td><fmt:formatNumber value="${cliente.saldo}" type="currency" /></td>
                                 <td>
                                     <a href="${pageContext.request.contextPath}/ServletControlador?accion=editar&id=${cliente.id}"
                                        class="btn btn-info">Editar</a>
-                                    <!--  <a href="#" class="btn btn-danger">Eliminar</a> -->
+                                       <a onclick="confirmarMensaje(${cliente.id}, '${cliente.nombres} ${cliente.apellidos}')" href="#confirmarBorrado" data-toggle="modal" class="mt-2 mt-lg-0 btn btn-danger">Eliminar</a> 
                                 </td>
                             </tr>
                         </c:forEach>
@@ -63,3 +64,5 @@
 </div>
 
 <jsp:include page="/WEB-INF/clientes/agregarCliente.jsp" />
+
+<jsp:include page="/WEB-INF/clientes/confirmarBorrado.jsp" />

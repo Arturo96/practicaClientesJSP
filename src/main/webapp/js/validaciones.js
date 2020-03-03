@@ -3,6 +3,19 @@ let c = console.log,
         enviarCliente = d.getElementById("enviarCliente"),
         frmCliente = d.getElementById("frmCliente");
 
+const confirmarMensaje = (id, nombre) => {
+    let nombreCliente = d.getElementById('nombreCliente'),
+        inputId = d.getElementById('inputId');
+
+    if(nombreCliente != null) {
+        nombreCliente.textContent = nombre;
+    }
+
+    if(inputId != null) {
+        inputId.value = id;
+    }
+}
+
 if (enviarCliente != null) {
     enviarCliente.addEventListener('click', e => {
         e.preventDefault();

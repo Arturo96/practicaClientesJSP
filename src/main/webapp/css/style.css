@@ -36,6 +36,10 @@ footer {
   font-weight: bold !important;
   color: #f00 !important; }
 
+.red {
+  font-weight: bold;
+  color: #f00; }
+
 @keyframes girar {
   from {
     transform: rotate(0deg); }
