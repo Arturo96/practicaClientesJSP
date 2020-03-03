@@ -14,7 +14,7 @@
         <!-- Header -->
         <jsp:include page="/WEB-INF/components/header.jsp" />
 
-        <form action="{pageContext.request.contextPath}/ServletControlador?accion=actualizar?id=${cliente.id}"
+        <form action="${pageContext.request.contextPath}/ServletControlador?accion=actualizar&id=${cliente.id}"
               method="POST" id="frmCliente">
 
             <!-- Botones de navegación -->
@@ -58,9 +58,7 @@
 
                             </div>
 
-                            <div class="modal-footer">
-
-                            </div>
+                            
                         </div>
                     </div>
                 </div>

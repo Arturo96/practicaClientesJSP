@@ -18,7 +18,7 @@ public class ServletControlador extends HttpServlet {
         List<Cliente> clientes = clientedao.getClientes();
 
         HttpSession session = request.getSession();
-        
+
         session.setAttribute("clientes", clientes);
         session.setAttribute("saldoTotal", clientedao.getSaldoTotal());
         session.setAttribute("numClientes", clientedao.getNumClientes());
@@ -36,11 +36,12 @@ public class ServletControlador extends HttpServlet {
             switch (accion) {
                 case "editar":
                     this.editarCliente(request, response);
+                    break;
                 default:
-                    
+
             }
-        } 
-        
+        }
+
         accionDefault(request, response);
 
     }
@@ -55,15 +56,19 @@ public class ServletControlador extends HttpServlet {
             switch (accion) {
                 case "insertar":
                     this.insertarCliente(request, response);
+                    break;
+                case "actualizar":
+                    this.actualizarCliente(request, response);
+                    break;
                 default:
-                    
+
             }
-        } 
-        
+        }
+
         accionDefault(request, response);
 
     }
-    
+
     private void insertarCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String nombres = request.getParameter("nombres");
@@ -77,16 +82,50 @@ public class ServletControlador extends HttpServlet {
         if (errores.isEmpty()) {
             double saldo = Double.parseDouble(saldoString);
             ClienteDaoJDBC clientedao = new ClienteDaoJDBC();
-            
+
             String mensajeInsert = clientedao.insert(new Cliente(0, nombres, apellidos, email, telefono, saldo));
-//            request.setAttribute("mensajeInsert", mensajeInsert);
             System.out.println("mensajeInsert = " + mensajeInsert);
-            
+
         } else {
-            
+
             request.setAttribute("errores", errores);
             System.out.println("Errores: " + errores);
-            
+
+        }
+
+    }
+
+    private void actualizarCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        int id = -1;
+        String idString = request.getParameter("id");
+        if (esIdValido(idString)) {
+            id = Integer.parseInt(idString);
+        }
+
+        ClienteDaoJDBC clientedao = new ClienteDaoJDBC();
+        Cliente cliente = clientedao.getClienteById(id);
+
+        if (cliente != null) {
+            String nombres = request.getParameter("nombres");
+            String apellidos = request.getParameter("apellidos");
+            String email = request.getParameter("email");
+            String telefono = request.getParameter("telefono");
+            String saldoString = request.getParameter("saldo");
+
+            List<String> errores = validarCampos(nombres, apellidos, email, telefono, saldoString);
+
+            if (errores.isEmpty()) {
+                double saldo = Double.parseDouble(saldoString);
+                
+                String mensajeUpdate = clientedao.update(new Cliente(id, nombres, apellidos, email, telefono, saldo));
+                System.out.println("mensajeUpdate = " + mensajeUpdate);
+
+            } else {
+                request.setAttribute("errores", errores);
+                System.out.println("Errores: " + errores);
+
+            }
         }
 
     }
@@ -94,21 +133,23 @@ public class ServletControlador extends HttpServlet {
     private void editarCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = -1;
         String idString = request.getParameter("id");
-        if(esIdValido(idString)) id = Integer.parseInt(idString);
-        
+        if (esIdValido(idString)) {
+            id = Integer.parseInt(idString);
+        }
+
         ClienteDaoJDBC clientedao = new ClienteDaoJDBC();
         Cliente cliente = clientedao.getClienteById(id);
-        
+
         if (cliente != null) {
             request.setAttribute("cliente", cliente);
         }
-        
+
         String path = "/WEB-INF/clientes/editarCliente.jsp";
-        
+
         request.getRequestDispatcher(path).forward(request, response);
-        
+
     }
-    
+
     private boolean esIdValido(String idString) {
         try {
             int id = Integer.parseInt(idString);
@@ -136,14 +177,16 @@ public class ServletControlador extends HttpServlet {
         if (telefono == null || telefono.equals(" ")) {
             errores.add("telefono");
         }
-        
+
         try {
             double saldo = Double.parseDouble(saldoString);
-            if (saldo < 0) saldoValido = false;
+            if (saldo < 0) {
+                saldoValido = false;
+            }
         } catch (Exception ex) {
             saldoValido = false;
         }
-        
+
         if (!saldoValido) {
             errores.add("saldo");
         }
